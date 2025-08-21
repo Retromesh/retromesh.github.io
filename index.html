@@ -4,125 +4,225 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>RetroMesh — Community-driven Social Darknet</title>
-<meta name="description" content="RetroMesh — a 2010s-style, corporate-free social darknet. Forked Tor Browser access, human-curated nodes, optional privacy tools."/>
-<meta name="theme-color" content="#0b1220">
-<!-- Open Graph / Twitter card for GitHub Pages previews -->
+<meta name="description" content="RetroMesh — a 2010s-style, corporate-free social darknet. Forked Tor Browser access, human-curated nodes, optional privacy tools.">
+<meta name="theme-color" content="#111216">
 <meta property="og:title" content="RetroMesh — Community-driven Social Darknet">
 <meta property="og:description" content="RetroMesh — a 2010s-style, corporate-free social darknet. Forked Tor Browser access, human-curated nodes, optional privacy tools.">
-<meta property="og:type" content="website">
 <meta property="og:image" content="assets/og-preview.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="RetroMesh">
-<meta name="twitter:description" content="Community-driven social darknet — no AI, no algorithms.">
-<meta name="twitter:image" content="assets/og-preview.png">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
 <style>
+/* Palette and base */
 :root{
-  --bg-1:#0b1220; --bg-2:#0f1b2a; --accent:#27b0ff; --muted:#9aa7b6;
-  --glass: rgba(255,255,255,0.04); --card: rgba(255,255,255,0.02); --radius:16px; --maxw:1100px;
-  --ff-sys: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  --bg:#0f1216;
+  --panel:#f6f7f8;
+  --muted:#6b7178;
+  --accent:#e53935; /* YouTube-like red */
+  --accent-2:#27b0ff;
+  --card:#ffffff;
+  --shadow-heavy: 0 18px 40px rgba(10,12,14,0.6);
+  --shadow-soft: 0 8px 20px rgba(10,12,14,0.28);
+  --radius:12px;
+  --maxw:1100px;
+  --ff-sys: "Helvetica Neue", Arial, "Segoe UI", Roboto, sans-serif;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; font-family:var(--ff-sys); background:linear-gradient(160deg,var(--bg-1),var(--bg-2) 60%);
-  color:#eaf0f6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  line-height:1.45; padding:40px 20px; display:flex; justify-content:center; align-items:flex-start;
+  margin:0; font-family:var(--ff-sys); background: linear-gradient(180deg,#0b0d10 0%, #111317 60%);
+  color:#0b0f14; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  padding:28px; display:flex; justify-content:center;
 }
-.container{width:100%; max-width:var(--maxw); display:grid; grid-template-columns: 1fr 420px; gap:32px;}
-.header{grid-column:1 / -1; display:flex; align-items:center; gap:18px; margin-bottom:6px;}
-.logo{width:64px; height:64px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#7de3ff 60%); display:flex; align-items:center; justify-content:center; color:var(--bg-1); font-weight:700; font-size:20px; box-shadow: 0 6px 18px rgba(15,30,45,0.45), inset 0 -6px 20px rgba(255,255,255,0.04);}
-.title{font-size:20px; letter-spacing:0.6px; color:#f3f7fb;}
-.sub{color:var(--muted); font-size:13px;}
-.hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:34px; box-shadow: 0 10px 30px rgba(5,10,20,0.6); backdrop-filter: blur(8px) saturate(120%);}
-.h-row{display:flex; gap:20px; align-items:flex-start;}
-.h-main{flex:1}
-h1{margin:0 0 10px 0; font-size:34px; letter-spacing:-0.4px; color:#ffffff;}
-.lead{margin:0 0 18px 0; color:var(--muted); font-size:15px; max-width:60ch;}
-.cta{display:flex; gap:12px; align-items:center; margin-top:8px;}
-.btn{display:inline-flex; align-items:center; gap:10px; padding:11px 16px; border-radius:12px; font-weight:600; font-size:14px; cursor:pointer; text-decoration:none; color:var(--bg-1); background:linear-gradient(180deg,#ffffff,#dff6ff); box-shadow: 0 6px 18px rgba(15,30,45,0.25);}
-.btn.ghost{background:transparent; color:#cfe7f7; border:1px solid rgba(255,255,255,0.06); box-shadow:none;}
-.side{position:relative; border-radius:14px; padding:22px; background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01)); box-shadow: 0 6px 20px rgba(3,8,14,0.5);}
-.stats{display:flex; gap:10px; margin-top:12px; color:var(--muted); font-size:13px;}
-.stat{background:var(--card); padding:10px 12px; border-radius:10px; flex:1; text-align:center;}
-.features{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:14px; margin-top:18px;}
-.feature{background:var(--glass); padding:14px; border-radius:11px; border:1px solid rgba(255,255,255,0.02);}
-.feature h4{margin:0 0 6px 0;font-size:15px}
-.feature p{margin:0;color:var(--muted);font-size:13px}
-.arch{margin-top:18px; padding:16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent); border:1px dashed rgba(255,255,255,0.02);}
-.footer{grid-column:1 / -1; margin-top:20px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; gap:20px; align-items:center;}
-@media (max-width:980px){ .container{grid-template-columns:1fr; padding-bottom:40px} .h-row{flex-direction:column} .side{order:2} .hero{order:1} }
+
+/* Layout container */
+.container{ width:100%; max-width:var(--maxw); display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start; }
+
+/* Top "chrome" bar (YouTube 2013 feel) */
+.chrome{
+  grid-column:1 / -1;
+  display:flex; align-items:center; gap:14px; padding:10px 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-radius:10px; box-shadow: var(--shadow-soft); margin-bottom:6px;
+}
+.logo-wrap{ display:flex; align-items:center; gap:12px; }
+.logo{
+  width:56px; height:36px; background:linear-gradient(180deg,var(--accent), #ff7b7b);
+  border-radius:4px; display:flex; align-items:center; justify-content:center; color:white;
+  font-weight:800; font-size:18px; box-shadow: 0 6px 12px rgba(0,0,0,0.35), inset 0 -6px 12px rgba(255,255,255,0.08);
+}
+.search{
+  flex:1; display:flex; align-items:center; gap:8px; max-width:720px;
+  background:linear-gradient(180deg,#fff,#f3f3f3); padding:6px; border-radius:3px; box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+}
+.search input{ flex:1; border:0; padding:8px 10px; font-size:14px; outline:none; background:transparent; color:#111;}
+.search .btn{ background:var(--accent); color:white; padding:8px 12px; border-radius:3px; font-weight:600; border:0; cursor:pointer; }
+
+/* Left main card - skeuomorphic "app window" */
+.window{
+  background: linear-gradient(180deg,#fafafa,#f1f3f5);
+  border-radius:12px; padding:20px; box-shadow: var(--shadow-heavy);
+  border:1px solid rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+.window .titlebar{
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+}
+.win-controls{
+  width:76px; display:flex; gap:8px; align-items:center;
+}
+.ctrl{
+  width:12px; height:12px; border-radius:50%; box-shadow: 0 2px 0 rgba(0,0,0,0.08) inset;
+}
+.ctrl.red{ background:#ff6b6b; box-shadow: 0 2px 0 rgba(0,0,0,0.12) inset; }
+.ctrl.yellow{ background:#ffcc4d; }
+.ctrl.green{ background:#5cd65c; }
+
+/* Hero area (old YouTube panel style) */
+.hero{
+  display:flex; gap:18px; align-items:flex-start;
+}
+.hero-left{ flex:1; }
+.hero-title{ font-size:22px; margin:0 0 6px 0; color:#0b0f14; }
+.hero-desc{ color:var(--muted); margin:0 0 12px 0; font-size:14px; }
+
+/* "Video-like" featured card to mimic YouTube 2013 thumbnails */
+.thumb{
+  background:linear-gradient(180deg,#111214 0%, #1b1f23 100%);
+  border-radius:8px; padding:12px; color:white; width:100%; box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  display:flex; gap:12px; align-items:center;
+}
+.thumb .image{
+  width:220px; height:124px; background:linear-gradient(135deg,#2a2e33,#16181b); border-radius:6px; flex:0 0 220px;
+  box-shadow: inset 0 -20px 40px rgba(0,0,0,0.28);
+}
+.thumb .meta{ flex:1; }
+.meta h3{ margin:0 0 6px 0; font-size:16px; }
+.meta p{ margin:0; color:#dfe6ea; font-size:13px; }
+
+/* right side column card panels */
+.side{
+  display:flex; flex-direction:column; gap:14px;
+}
+.card{
+  background:linear-gradient(180deg,#fff,#f7f7f8);
+  border-radius:10px; padding:14px; box-shadow: var(--shadow-soft); border:1px solid rgba(0,0,0,0.04);
+}
+.card h4{ margin:0 0 8px 0; font-size:14px; color:#0b0f14; }
+.card p{ margin:0; color:var(--muted); font-size:13px; }
+
+/* Buttons / skeuomorphic glossy */
+.btn{
+  display:inline-block; padding:9px 12px; border-radius:4px; font-weight:700; text-decoration:none; color:white;
+  background:linear-gradient(180deg,#ff6b6b,#c93a3a); border:1px solid rgba(0,0,0,0.08); box-shadow: 0 6px 14px rgba(0,0,0,0.28);
+}
+.btn.ghost{
+  background:linear-gradient(180deg,#ffffff,#f2f2f2); color:#111; border:1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* features list (mimic old sidebar sections) */
+.section{
+  border-top:1px solid rgba(0,0,0,0.04); padding-top:12px; margin-top:12px;
+}
+.feature-list{ display:flex; flex-direction:column; gap:10px; }
+.feature-item{ display:flex; gap:10px; align-items:center; }
+.icon-pill{ width:36px; height:36px; border-radius:6px; background:linear-gradient(180deg,#fff,#eef2f4); display:flex; align-items:center; justify-content:center; box-shadow: 0 6px 12px rgba(0,0,0,0.06); }
+
+/* footer chrome note */
+.footer{
+  grid-column:1 / -1; display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:13px; margin-top:10px;
+}
+
+/* responsive */
+@media (max-width:980px){
+  .container{ grid-template-columns: 1fr; padding-bottom:40px; }
+  .chrome{ flex-wrap:wrap; }
+  .hero{ flex-direction:column; }
+}
 </style>
 </head>
 <body>
-  <div class="container" role="main" aria-labelledby="main-heading">
-    <header class="header">
-      <div class="logo" aria-hidden="true">RM</div>
-      <div>
-        <div class="title">RetroMesh</div>
-        <div class="sub">Community-driven social darknet — no AI, no algorithms</div>
+  <main class="container" role="main" aria-labelledby="main-heading">
+
+    <div class="chrome" aria-hidden="false">
+      <div class="logo-wrap">
+        <div class="logo">RM</div>
+        <div style="font-weight:700">RetroMesh</div>
       </div>
-    </header>
 
-    <section class="hero" aria-labelledby="main-heading">
-      <div class="h-row">
-        <div class="h-main">
-          <h1 id="main-heading">Restoring a human-first, corporate‑free social web.</h1>
-          <p class="lead">RetroMesh is a community-driven darknet project recreating a 2010s-style social web: curated nodes, link directories, forums, and small communities. Access is via a RetroMesh fork of Tor Browser. Privacy features are available but optional.</p>
+      <div class="search" role="search" aria-label="Search (visual only)">
+        <input type="search" placeholder="Search nodes, directories, threads" aria-label="Search"/>
+        <button class="btn" onclick="window.open('https://github.com/Retromesh/Retromesh','_blank')">Repo</button>
+      </div>
 
-          <div class="cta">
-            <a class="btn" href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener">View repo</a>
-            <a class="btn ghost" href="#get-started">Get started</a>
+      <div style="display:flex;gap:10px;">
+        <a class="btn ghost" href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+
+    <!-- left: skeuomorphic app window -->
+    <section class="window" aria-labelledby="main-heading">
+      <div class="titlebar">
+        <div class="win-controls" aria-hidden="true">
+          <div class="ctrl red"></div><div class="ctrl yellow"></div><div class="ctrl green"></div>
+        </div>
+        <div>
+          <h1 id="main-heading" style="margin:0;font-size:18px;color:#0b0f14">Restoring a human-first, corporate-free social web</h1>
+          <div style="color:var(--muted);font-size:13px;margin-top:4px">RetroMesh — 2010s-style darknet overlay. No AI, no recommendation algorithms. Forked Tor Browser for access. Privacy tools optional.</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-left">
+          <div class="thumb" aria-hidden="true">
+            <div class="image"></div>
+            <div class="meta">
+              <h3>Featured — Getting started</h3>
+              <p>Early development: client (Tor Browser fork) + node daemon. Build and test in a sandboxed VM. See repository for instructions.</p>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <a class="btn" href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener">Get the repo</a>
+                <a class="btn ghost" href="#get-started" style="padding:8px 10px;color:#111">Quick start</a>
+              </div>
+            </div>
           </div>
 
-          <div class="stats" aria-hidden="true">
-            <div class="stat">
-              <div style="font-weight:700;color:#fff;">Early</div>
-              <div style="font-size:12px;color:var(--muted);">Development</div>
-            </div>
-            <div class="stat">
-              <div style="font-weight:700;color:#fff;">GPLv3</div>
-              <div style="font-size:12px;color:var(--muted);">License</div>
-            </div>
-            <div class="stat">
-              <div style="font-weight:700;color:#fff;">Client + Node</div>
-              <div style="font-size:12px;color:var(--muted);">Codebase</div>
-            </div>
+          <div class="section" id="get-started" style="margin-top:16px">
+            <h4 style="margin:0 0 8px 0">Quick start</h4>
+            <p style="margin:0;color:var(--muted);font-size:13px">1) Read warnings and local law. 2) Clone repo: <code>git clone https://github.com/Retromesh/Retromesh.git</code>. 3) See /client and /node READMEs. 4) Build in VM/sandbox before connecting to live networks.</p>
+          </div>
+
+          <div class="section" style="margin-top:14px">
+            <h4 style="margin:0 0 8px 0">Why RetroMesh</h4>
+            <ul style="margin:0;color:var(--muted);font-size:13px;padding-left:18px">
+              <li>Social-first: groups, threads, events.</li>
+              <li>Human discovery: curated directories and peer invites.</li>
+              <li>Optional privacy: onion services, E2E messaging, ephemeral IDs.</li>
+            </ul>
           </div>
         </div>
 
-        <aside class="side" aria-labelledby="side-title">
-          <h3 id="side-title" style="margin:0 0 8px 0;">Quick links</h3>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <a class="btn" href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener" style="padding:10px 12px;font-size:13px">Repository</a>
-            <a class="btn ghost" href="#run-a-node" style="padding:10px 12px;font-size:13px">Run a node</a>
-            <a class="btn ghost" href="#use-the-client" style="padding:10px 12px;font-size:13px">Build client</a>
+        <aside class="side" aria-labelledby="sidebar-title">
+          <div class="card">
+            <h4 id="sidebar-title">Status</h4>
+            <p>Early development — client & node work in progress. Use for testing and contribution.</p>
           </div>
 
-          <div class="features" style="margin-top:14px">
-            <div class="feature">
-              <h4>Social-first</h4>
-              <p>Groups, threads, events and peer-based discovery.</p>
-            </div>
-            <div class="feature">
-              <h4>Human discovery</h4>
-              <p>Curated directories and friend invites — no recommender algorithms.</p>
-            </div>
-            <div class="feature">
-              <h4>Optional privacy</h4>
-              <p>Onion services, E2E messaging, ephemeral identities (opt-in).</p>
-            </div>
-            <div class="feature">
-              <h4>Lightweight</h4>
-              <p>Small node daemon and text-first protocols to keep things simple.</p>
+          <div class="card">
+            <h4>Quick links</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <a class="btn" href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener">Repository</a>
+              <a class="btn ghost" href="#get-started">Run a node</a>
+              <a class="btn ghost" href="#get-started">Build client</a>
             </div>
           </div>
 
-          <div class="arch" style="margin-top:14px">
-            <strong>Architecture</strong>
-            <p style="margin:8px 0 0 0;color:var(--muted);font-size:13px">Tor-based overlay · Node daemon · RetroMesh Tor Browser fork · Text-first protocols</p>
+          <div class="card">
+            <h4>Architecture</h4>
+            <p>Tor-based overlay · Node daemon · RetroMesh Tor Browser fork · Text-first protocols</p>
+          </div>
+
+          <div class="card">
+            <h4>License</h4>
+            <p>GPLv3 — see LICENSE in the repository.</p>
           </div>
         </aside>
       </div>
@@ -130,12 +230,13 @@ h1{margin:0 0 10px 0; font-size:34px; letter-spacing:-0.4px; color:#ffffff;}
 
     <footer class="footer">
       <div>© RetroMesh — community project</div>
-      <div><a href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">View source on GitHub</a></div>
+      <div style="text-align:right;color:var(--muted)">Warning: darknet overlay — use at your own risk • <a href="https://github.com/Retromesh/Retromesh" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Source</a></div>
     </footer>
-  </div>
+
+  </main>
 
 <script>
-/* simple scrolling for anchors on GitHub Pages */
+/* smooth anchor scrolling for GitHub Pages */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href').slice(1);
